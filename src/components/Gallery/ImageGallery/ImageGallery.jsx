@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 import { PhotoCard, GalleryImage, GalleryBox } from './ImageGallery.styled.js';
 
 const ImageGallery = ({ items, showImage }) => {
@@ -11,7 +12,7 @@ const ImageGallery = ({ items, showImage }) => {
   return <GalleryBox>{elements}</GalleryBox>;
 };
 
-export default ImageGallery;
+export default memo(ImageGallery);
 
 ImageGallery.defaultProps = {
   items: [],

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Loader from '../elements/Loader/Loader';
 import SearchBar from './Searchbar/Serchbar';
@@ -20,28 +20,30 @@ export const Gallery = () => {
   const [showModal, setShowModal] = useState(false);
   const [imageDetails, setImageDetails] = useState([]);
   const [showMore, setShowMore] = useState(false);
-  // const [, setTotalPageFind] = useState(0);
+  const [totalPageFind, setTotalPageFind] = useState(0);
 
   useEffect(() => {
-    if (!search) {
-      return;
-    }
-    const fetchImage = async () => {
-      try {
-        setIsLoading(true);
-        const data = await SearchQuery(search, page);
-        setItems(prevItems => [...prevItems, ...data.hits]);
-        console.log(items);
-        if (page < Math.ceil(data.totalHits / 12)) {
-          setShowMore(true);
+    if (search) {
+      const fetchImage = async () => {
+        try {
+          setIsLoading(true);
+          const data = await SearchQuery(search, page);
+          setItems(prevItems => [...prevItems, ...data.hits]);
+          setTotalPageFind(data.hits.length);
+          console.log(data);
+          console.log(items);
+          if (page < Math.ceil(data.totalHits / 12)) {
+            setShowMore(true);
+          } else setShowMore(false);
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          console.log('nen');
+          setIsLoading(false);
         }
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchImage();
+      };
+      fetchImage();
+    }
   }, [
     search,
     page,
@@ -49,15 +51,15 @@ export const Gallery = () => {
     setItems,
     setShowModal,
     setError,
-    // totalPageFind,
+    totalPageFind,
     items,
   ]);
 
-  const searchImage = ({ search }) => {
+  const searchImage = useCallback(search => {
     setSearch(search);
     setItems([]);
     setPage(1);
-  };
+  }, []);
 
   const showImage = (largeImageURL, tags) => {
     setShowModal(true);
@@ -66,9 +68,9 @@ export const Gallery = () => {
 
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
-    // if (page <= totalPageFind) {
-    //   setShowMore(false);
-    // }
+    if (page <= totalPageFind) {
+      setShowMore(false);
+    }
   };
 
   const closeModal = () => {
