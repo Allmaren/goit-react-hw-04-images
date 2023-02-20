@@ -20,7 +20,7 @@ export const Gallery = () => {
   const [showModal, setShowModal] = useState(false);
   const [imageDetails, setImageDetails] = useState([]);
   const [showMore, setShowMore] = useState(false);
-  const [totalPageFind, setTotalPageFind] = useState(0);
+  // const [totalPageFind, setTotalPageFind] = useState(0);
 
   useEffect(() => {
     if (!search) {
