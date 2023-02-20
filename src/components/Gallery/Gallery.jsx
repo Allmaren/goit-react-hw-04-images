@@ -20,7 +20,7 @@ export const Gallery = () => {
   const [showModal, setShowModal] = useState(false);
   const [imageDetails, setImageDetails] = useState([]);
   const [showMore, setShowMore] = useState(false);
-  // const [totalPageFind, setTotalPageFind] = useState(0);
+  // const [, setTotalPageFind] = useState(0);
 
   useEffect(() => {
     if (!search) {
@@ -49,7 +49,7 @@ export const Gallery = () => {
     setItems,
     setShowModal,
     setError,
-    totalPageFind,
+    // totalPageFind,
     items,
   ]);
 
@@ -66,9 +66,9 @@ export const Gallery = () => {
 
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
-    if (page <= totalPageFind) {
-      setShowMore(false);
-    }
+    // if (page <= totalPageFind) {
+    //   setShowMore(false);
+    // }
   };
 
   const closeModal = () => {
