@@ -31,8 +31,8 @@ export const Gallery = () => {
         setIsLoading(true);
         const data = await SearchQuery(search, page);
         setItems(prevItems => [...prevItems, ...data.hits]);
-        setTotalPageFind(data.total);
-        if (totalPageFind > 12) {
+        console.log(items);
+        if (page < Math.ceil(data.totalHits / 12)) {
           setShowMore(true);
         }
       } catch (error) {
@@ -50,6 +50,7 @@ export const Gallery = () => {
     setShowModal,
     setError,
     totalPageFind,
+    items,
   ]);
 
   const searchImage = ({ search }) => {

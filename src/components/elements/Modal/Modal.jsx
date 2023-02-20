@@ -7,16 +7,22 @@ import { ModalBackdrop, ModalImg } from './Modal.styled.js';
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ close, children }) => {
-  const closeModal = ({ target, currentTarget, code }) => {
-    if (target === currentTarget || code === 'Escape') {
+  const closeModal = e => {
+    if (e.target === e.currentTarget) {
       close();
     }
   };
 
   useEffect(() => {
-    document.addEventListener('keydown', closeModal);
-    return () => document.removeEventListener('keydown', closeModal);
-  }, [closeModal]);
+    const closeEscape = ({ code }) => {
+      if (code === 'Escape') {
+        close();
+      }
+    };
+
+    document.addEventListener('keydown', closeEscape);
+    return () => document.removeEventListener('keydown', closeEscape);
+  }, [close]);
 
   return createPortal(
     <ModalBackdrop onClick={closeModal}>
