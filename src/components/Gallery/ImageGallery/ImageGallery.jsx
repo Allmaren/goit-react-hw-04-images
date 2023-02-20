@@ -3,10 +3,11 @@ import { PhotoCard, GalleryImage, GalleryBox } from './ImageGallery.styled.js';
 
 const ImageGallery = ({ items, showImage }) => {
   const elements = items.map(({ id, webformatURL, largeImageURL, tags }) => (
-    <PhotoCard key={id} onClick={() => showImage(largeImageURL, tags)}>
+    <PhotoCard onClick={() => showImage(largeImageURL, tags)} key={id}>
       <GalleryImage src={webformatURL} alt={tags} loading="lazy" />
     </PhotoCard>
   ));
+
   return <GalleryBox>{elements}</GalleryBox>;
 };
 
