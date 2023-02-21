@@ -31,7 +31,6 @@ export const Gallery = () => {
         setIsLoading(true);
         const data = await SearchQuery(search, page);
         setItems(prevItems => [...prevItems, ...data.hits]);
-        console.log(items);
         if (page < Math.ceil(data.totalHits / 12)) {
           setShowMore(true);
         }
