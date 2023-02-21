@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import Loader from '../elements/Loader/Loader';
 import SearchBar from './Searchbar/Serchbar';
@@ -23,43 +23,32 @@ export const Gallery = () => {
   const [totalPageFind, setTotalPageFind] = useState(0);
 
   useEffect(() => {
-    if (search) {
-      const fetchImage = async () => {
-        try {
-          setIsLoading(true);
-          const data = await SearchQuery(search, page);
-          setItems(prevItems => [...prevItems, ...data.hits]);
-          setTotalPageFind(data.hits.length);
-          console.log(data);
-          console.log(items);
-          if (page < Math.ceil(data.totalHits / 12)) {
-            setShowMore(true);
-          } else setShowMore(false);
-        } catch (error) {
-          setError(error.message);
-        } finally {
-          console.log('nen');
-          setIsLoading(false);
-        }
-      };
-      fetchImage();
+    if (!search) {
+      return;
     }
-  }, [
-    search,
-    page,
-    setIsLoading,
-    setItems,
-    setShowModal,
-    setError,
-    totalPageFind,
-    items,
-  ]);
+    const fetchImage = async () => {
+      try {
+        setIsLoading(true);
+        const data = await SearchQuery(search, page);
+        setItems(prevItems => [...prevItems, ...data.hits]);
+        console.log(items);
+        if (page < Math.ceil(data.totalHits / 12)) {
+          setShowMore(true);
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchImage();
+  }, [search, page]);
 
-  const searchImage = useCallback(search => {
+  const searchImage = ({ search }) => {
     setSearch(search);
     setItems([]);
     setPage(1);
-  }, []);
+  };
 
   const showImage = (largeImageURL, tags) => {
     setShowModal(true);
