@@ -55,3 +55,10 @@ export const ButtonLoadMore = styled.button`
     color: rgba(57, 118, 246, 1);
   }
 `;
+
+export const Fon = styled.div`
+  color: red;
+  font-size: 60px;
+  text-align: center;
+  margin: 40px auto;
+`;

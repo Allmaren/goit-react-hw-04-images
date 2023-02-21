@@ -11,8 +11,14 @@ import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Modal from 'components/elements/Modal/Modal';
 import { SearchQuery } from '../elements/services/image-api';
 import { ReactComponent as MySVG } from '../elements/icon/arrow.svg';
+import { ReactComponent as MyCAT } from '../elements/icon/cat.svg';
 
-import { Block, TextError, ButtonLoadMore } from '../Gallery/Gallery.styled.js';
+import {
+  Block,
+  TextError,
+  ButtonLoadMore,
+  Fon,
+} from '../Gallery/Gallery.styled.js';
 import './index.css';
 
 export const Gallery = () => {
@@ -89,6 +95,12 @@ export const Gallery = () => {
       </Block>
       <ToastContainer />
       <ScrollToTop smooth component={<MySVG />} />
+      {totalPageFind === 0 && search && (
+        <Fon>
+          <p>No items - enjoy cat :)</p>
+          <MyCAT />
+        </Fon>
+      )}
       <ImageGallery items={items} showImage={showImage} />
       {error && <TextError>{error}</TextError>}
       {isLoading && <Loader />}
