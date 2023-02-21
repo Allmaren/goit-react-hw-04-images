@@ -31,6 +31,7 @@ export const Gallery = () => {
         setIsLoading(true);
         const data = await SearchQuery(search, page);
         setItems(prevItems => [...prevItems, ...data.hits]);
+        setTotalPageFind(data.totalHits);
         if (page < Math.ceil(data.totalHits / 12)) {
           setShowMore(true);
         }
