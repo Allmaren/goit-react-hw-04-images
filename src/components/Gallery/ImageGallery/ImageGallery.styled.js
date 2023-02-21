@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PhotoCard = styled.li`
   display: flex;
   max-width: 320px;
-  max-height: 240px;
+  /* max-height: 240px; */
   flex-direction: column;
   border-bottom-left-radius: 6px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);

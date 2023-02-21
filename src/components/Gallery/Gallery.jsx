@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-
+import ScrollToTop from 'react-scroll-to-top';
 import Loader from '../elements/Loader/Loader';
 import SearchBar from './Searchbar/Serchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Modal from 'components/elements/Modal/Modal';
 import { SearchQuery } from '../elements/services/image-api';
-// import { ButtonUp } from 'components/elements/ButtonUp/ButtonUp';
+import { ReactComponent as MySVG } from '../elements/icon/arrow.svg';
 
 import { Block, TextError, ButtonLoadMore } from '../Gallery/Gallery.styled.js';
 import './index.css';
@@ -71,7 +71,7 @@ export const Gallery = () => {
       <Block>
         <SearchBar onSubmit={searchImage} />
       </Block>
-
+      <ScrollToTop smooth component={<MySVG />} />
       <ImageGallery items={items} showImage={showImage} />
       {error && <TextError>{error}</TextError>}
       {isLoading && <Loader />}
