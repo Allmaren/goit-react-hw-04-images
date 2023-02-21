@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PhotoCard = styled.li`
   display: flex;
   max-width: 440px;
-  min-height: 360px;
+  min-height: 220px;
   flex-direction: column;
   border-bottom-left-radius: 6px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -28,6 +28,6 @@ export const GalleryImage = styled.img`
 export const GalleryBox = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
 `;
