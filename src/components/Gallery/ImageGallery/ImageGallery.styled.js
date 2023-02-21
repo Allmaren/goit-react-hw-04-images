@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 
 export const PhotoCard = styled.li`
-  display: flex;
-  max-width: 440px;
-  min-height: 220px;
-  flex-direction: column;
-  border-bottom-left-radius: 6px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
@@ -17,8 +12,9 @@ export const PhotoCard = styled.li`
 export const GalleryImage = styled.img`
   border-radius: 10px;
   width: 100%;
-  height: 100%;
+  height: 260px;
   object-fit: cover;
+
   &hover,
   &:focus {
     cursor: zoom-in;
@@ -26,8 +22,11 @@ export const GalleryImage = styled.img`
 `;
 
 export const GalleryBox = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+  margin: 10px auto 0px;
+  padding: 0px;
   justify-content: center;
 `;

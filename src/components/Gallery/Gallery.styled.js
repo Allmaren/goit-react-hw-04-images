@@ -9,10 +9,6 @@ export const Block = styled.header`
   justify-content: center;
   align-items: center;
   min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   margin-bottom: 15px;

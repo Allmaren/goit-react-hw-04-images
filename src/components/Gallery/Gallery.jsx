@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 import ScrollToTop from 'react-scroll-to-top';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 import Loader from '../elements/Loader/Loader';
 import SearchBar from './Searchbar/Serchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
@@ -22,6 +26,12 @@ export const Gallery = () => {
   const [showMore, setShowMore] = useState(false);
   const [totalPageFind, setTotalPageFind] = useState(0);
 
+  const notify = () => {
+    toast.error(`Wow-wow... there no items for you request`, {
+      theme: 'dark',
+    });
+  };
+
   useEffect(() => {
     if (!search) {
       return;
@@ -32,6 +42,11 @@ export const Gallery = () => {
         const data = await SearchQuery(search, page);
         setItems(prevItems => [...prevItems, ...data.hits]);
         setTotalPageFind(data.totalHits);
+
+        if (data.hits.length === 0) {
+          setShowMore(false);
+          notify();
+        }
         if (page < Math.ceil(data.totalHits / 12)) {
           setShowMore(true);
         }
@@ -72,6 +87,7 @@ export const Gallery = () => {
       <Block>
         <SearchBar onSubmit={searchImage} />
       </Block>
+      <ToastContainer />
       <ScrollToTop smooth component={<MySVG />} />
       <ImageGallery items={items} showImage={showImage} />
       {error && <TextError>{error}</TextError>}
