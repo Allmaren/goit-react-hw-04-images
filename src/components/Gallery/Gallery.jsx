@@ -65,23 +65,23 @@ export const Gallery = () => {
     fetchImage();
   }, [search, page]);
 
-  const searchImage = ({ search }) => {
+  const searchImage = useCallback(({ search }) => {
     setSearch(search);
     setItems([]);
     setPage(1);
-  };
+  }, []);
 
   const showImage = useCallback((largeImageURL, tags) => {
     setShowModal(true);
     setImageDetails({ largeImageURL, tags });
   }, []);
 
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     setPage(prevPage => prevPage + 1);
     if (page <= totalPageFind) {
       setShowMore(false);
     }
-  };
+  }, [page, totalPageFind]);
 
   const closeModal = () => {
     setShowModal(false);

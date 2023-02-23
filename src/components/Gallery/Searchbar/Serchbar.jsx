@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { SearchForm, Input } from './SeachBar.styled.js';
 // import { BiSearchAlt } from 'react-icons/bi';
 
@@ -7,7 +7,7 @@ import { initialState } from 'components/elements/services/initialState.js';
 
 const SearchBar = ({ onSubmit }) => {
   const [state, setState] = useState({ ...initialState });
-
+  console.log('render SearchBar');
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setState(prevState => {
@@ -43,4 +43,4 @@ SearchBar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default SearchBar;
+export default memo(SearchBar);
