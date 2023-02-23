@@ -7,7 +7,7 @@ import { initialState } from 'components/elements/services/initialState.js';
 
 const SearchBar = ({ onSubmit }) => {
   const [state, setState] = useState({ ...initialState });
-  console.log('render SearchBar');
+
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setState(prevState => {
