@@ -83,10 +83,10 @@ export const Gallery = () => {
     }
   }, [page, totalPageFind]);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setShowModal(false);
     setImageDetails(null);
-  };
+  }, []);
 
   return (
     <>
