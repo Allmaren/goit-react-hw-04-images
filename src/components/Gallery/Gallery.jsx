@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ScrollToTop from 'react-scroll-to-top';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -71,10 +71,10 @@ export const Gallery = () => {
     setPage(1);
   };
 
-  const showImage = (largeImageURL, tags) => {
+  const showImage = useCallback((largeImageURL, tags) => {
     setShowModal(true);
     setImageDetails({ largeImageURL, tags });
-  };
+  }, []);
 
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
