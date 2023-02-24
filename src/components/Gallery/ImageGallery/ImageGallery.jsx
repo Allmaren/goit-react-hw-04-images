@@ -8,7 +8,7 @@ const ImageGallery = ({ items, showImage }) => {
       <GalleryImage src={webformatURL} alt={tags} loading="lazy" />
     </PhotoCard>
   ));
-  console.log('rendering');
+
   return <GalleryBox>{elements}</GalleryBox>;
 };
 

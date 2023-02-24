@@ -65,28 +65,28 @@ export const Gallery = () => {
     fetchImage();
   }, [search, page]);
 
-  const searchImage = useCallback(({ search }) => {
+  const searchImage = ({ search }) => {
     setSearch(search);
     setItems([]);
     setPage(1);
-  }, []);
+  };
 
-  const showImage = useCallback((largeImageURL, tags) => {
+  const showImage = (largeImageURL, tags) => {
     setShowModal(true);
     setImageDetails({ largeImageURL, tags });
-  }, []);
+  };
 
-  const loadMore = useCallback(() => {
+  const loadMore = () => {
     setPage(prevPage => prevPage + 1);
-    if (page <= totalPageFind) {
-      setShowMore(false);
-    }
-  }, [page, totalPageFind]);
+    // if (page <= totalPageFind) {
+    //   setShowMore(false);
+    // }
+  };
 
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     setShowModal(false);
     setImageDetails(null);
-  }, []);
+  };
 
   return (
     <>
