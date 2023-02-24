@@ -53,9 +53,9 @@ export const Gallery = () => {
           setShowMore(false);
           notify();
         }
-        if (page < Math.ceil(data.totalHits / 12)) {
-          setShowMore(true);
-        }
+       
+          setShowMore(page < Math.ceil(data.totalHits / 12));
+      
       } catch (error) {
         setError(error.message);
       } finally {
